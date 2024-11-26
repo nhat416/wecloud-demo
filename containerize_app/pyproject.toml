@@ -1,0 +1,13 @@
+[project]
+name = "containerize-app"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.5",
+    "gradio>=5.3.0",
+    "torch>=2.5.1",
+    "transformers>=4.46.3",
+    "uvicorn>=0.32.1",
+]
