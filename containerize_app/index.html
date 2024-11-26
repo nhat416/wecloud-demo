@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrophysics Q&A</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #question {
+            width: 80%;
+        }
+    </style>
+</head>
+<body class="container mt-5">
+    <h1 class="text-center">Astrophysics Q&A</h1>
+    <form id="qa-form" class="mb-4">
+        <div class="form-group">
+            <label for="question">Enter your question:</label>
+            <input type="text" id="question" name="question" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Ask</button>
+    </form>
+    <h2>Answer:</h2>
+    <p id="answer" class="alert alert-info"></p>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('qa-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const question = document.getElementById('question').value;
+            const response = await fetch('/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question: question })
+            });
+            const data = await response.json();
+            document.getElementById('answer').innerText = data.answer;
+        });
+    </script>
+</body>
+</html>
