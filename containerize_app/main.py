@@ -39,7 +39,7 @@ async def ask_question(question: Question):
 
 @app.get("/", response_class=HTMLResponse)
 async def read_index():
-    html_content = Path("backup/index.html.bk").read_text()
+    html_content = Path("index.html").read_text()
     return HTMLResponse(content=html_content, status_code=200)
 
 if __name__ == "__main__":
